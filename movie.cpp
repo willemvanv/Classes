@@ -3,16 +3,18 @@
 #include <string.h>
 
 using namespace std;
-
-movie::movie(string Director, int Duration, float Rating, int Year, string Title, int Type):
+//Constructor
+movie::movie(char Director[99], int Duration, float Rating, int Year, char Title[99], int Type):
   media(Title, Year, Type){
-  director = Director;
+  strcpy(director, Director);
   duration = Duration;
   rating = Rating;
 }
+//Deconstructor
 movie::~movie() {
   
 }
+//Search function
 void movie::PrintMovie() {
   cout << endl;
   PrintMedia();
@@ -21,7 +23,7 @@ void movie::PrintMovie() {
   cout << "Rating:" << rating << endl;
   cout << endl;
 }
-string movie::getDirector() {
+char* movie::getDirector() {
   return director;
 }
 int movie::getDuration() {

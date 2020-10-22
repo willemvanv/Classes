@@ -3,19 +3,20 @@
 #include <string.h>
 
 using namespace std;
-
+//Deconstructor
 music::~music() {
   
 }
-string music::getPublisher() {
+char* music::getPublisher() {
   return publisher;
 }
-string music::getArtist() {
+char* music::getArtist() {
   return artist;
 }
 int music::getDuration() {
   return duration;
 }
+//Search function
 void music::PrintMusic() {
   cout << endl;
   PrintMedia();
@@ -24,9 +25,10 @@ void music::PrintMusic() {
   cout << "Duration:" << duration << endl;
   cout << endl;
 }
-music::music(string Artist, string Publisher,int Duration,
-	     int Year, string Title, int Type): media(Title, Year, Type) {
-  artist = Artist;
-  publisher = Publisher;
+//Constructor
+music::music(char Artist[99], char Publisher[99], int Duration,
+	     int Year, char Title[99], int Type): media(Title, Year, Type) {
+  strcpy(artist, Artist);
+  strcpy(publisher, Publisher);
   duration = Duration;
 }

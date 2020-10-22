@@ -5,17 +5,18 @@
 using namespace std;
 
 class music: public media {
+  //Public fuctions
  public:
-  music(string Artist, string Publisher,int Duration, int Year,
-	string Title, int Type);
+  music(char Artist[99], char Publisher[99], int Duration, int Year,
+	char Title[99], int Type);
   void PrintMusic();
-  string getArtist();
-  string getPublisher();
+  char* getArtist();
+  char* getPublisher();
   int getDuration();
   ~music();
-  
+  //Private variables
  private:
-  string artist;
-  string publisher;
+  char artist[99];
+  char publisher[99];
   int duration;
 };

@@ -6,16 +6,18 @@
 using namespace std;
 
 class media {
+  //Public functions
  public:
-  media(string Title, int Year, int Type);
+  media(char Title[99], int Year, int Type);
   void PrintMedia();
   virtual ~media();
   int SearchYear(int b);
-  int SearchTitle(string b);
+  int SearchTitle(char b[99]);
+  //Private vars
  private:
   int type;
   int year;
-  string title;
+  char title[99];
 };
 
 #endif

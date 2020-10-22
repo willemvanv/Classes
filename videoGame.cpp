@@ -3,15 +3,17 @@
 #include <string.h>
 
 using namespace std;
-
-videoGame::videoGame(string Publisher, float Rating, int Year, string Title, int Type):
+//Constructor
+videoGame::videoGame(char Publisher[99], float Rating, int Year, char Title[99], int Type):
   media(Title, Year, Type){
-  publisher = Publisher;
+  strcpy(publisher, Publisher);
   rating = Rating;
 }
+//Deconstructor
 videoGame::~videoGame() {
   
 }
+//Search function
 void videoGame::PrintVideoGame() {
   cout << endl;
   PrintMedia();
@@ -19,7 +21,7 @@ void videoGame::PrintVideoGame() {
   cout << "Rating:" << rating << endl;
   cout << endl;
 }
-string videoGame::getPublisher() {
+char* videoGame::getPublisher() {
   return publisher;
 }
 float videoGame::getRating() {

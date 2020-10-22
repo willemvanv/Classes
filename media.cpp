@@ -6,17 +6,17 @@
 #include "movie.h"
 
 using namespace std;
-
-media::media(string Title, int Year, int Type) {
-  title = Title;
+//Constructor
+media::media(char Title[99], int Year, int Type) {
+  strcpy(title, Title);
   year = Year;
   type = Type;
 }
-
+//Deconstructor
 media::~media(){
   
 }
-
+//Search function
 void media::PrintMedia() {
   cout << "Title:" << title << endl;
   cout << "Year:" << year << endl;
@@ -35,8 +35,8 @@ int media::SearchYear(int b) {
   }
   return 3;
 }
-int media::SearchTitle(string b) {
-  if (title == b) {
+int media::SearchTitle(char b[99]) {
+  if (strcmp(title, b) == 0) {
     if (type == 0) {
       return 0;
     }

@@ -7,19 +7,22 @@
 
 using namespace std;
 
+//Declaring Functions
 void add(media **a);
 void search(int b, media **a);
 void delet(int b, media **a);
 
+//Variables
 media *list[99];
 int place = 0;
 
+//Main
 int main() {
   bool running = true;
   char input[10];
-  
+  //Running loop
   while (running == true) {
-    cout << "Enter Command (all lowecase)" << endl;
+    cout << "Enter Command (all lowecase)(add/search/delete/quit)" << endl;
     cin.getline(input, 10);
     if (input[0] == 'a' && input[1] == 'd' &&
 	input[2] == 'd') {
@@ -36,6 +39,7 @@ int main() {
 	input[4] == 't' && input[5] == 'e') {
       delet(place, list);
     }
+    //End loop
     if (input[0] == 'q' && input[1] == 'u' &&
 	input[2] == 'i' && input[3] == 't') {
       running = false;
@@ -44,10 +48,11 @@ int main() {
   }
 
 }
+//Add function
 void add(media **a) {
   char d[20];
   int yeara;
-  string titlea;
+  char titlea[99];
   int typea;
   cout << "Enter Year" << endl;
   cin >> yeara;
@@ -58,8 +63,8 @@ void add(media **a) {
   if (d[0] == 'm' && d[1] == 'u' && d[2] == 's' &&
       d[3] == 'i' && d[4] == 'c') {
     typea = 0;
-    string artista;
-    string publishera;
+    char artista[99];
+    char publishera[99];
     int durationa;
     cout << "Enter Artist" << endl;
     cin >> artista;
@@ -71,7 +76,7 @@ void add(media **a) {
   } else if (d[0] == 'm' && d[1] == 'o' && d[2] == 'v' &&
 	     d[3] == 'i' && d[4] == 'e') {
     typea = 1;
-    string directorb;
+    char directorb[99];
     int durationb;
     float ratingb;
     cout << "Enter Director" << endl;
@@ -86,7 +91,7 @@ void add(media **a) {
 	     d[5] == 'g' && d[6] == 'a' && d[7] == 'm' &&
 	     d[8] == 'e') {
     typea = 2;
-    string publisherc;
+    char publisherc[99];
     float ratingc;
     cout << "Enter Publisher" << endl;
     cin >> publisherc;
@@ -95,16 +100,17 @@ void add(media **a) {
     *a = new videoGame(publisherc, ratingc, yeara, titlea, typea);
   }
 }
+//Search function
 void search(int b, media **a) {
   char input[2];
   int no;
-  string tit;
+  char tit[99];
   videoGame *vg;
   music *mus;
   movie *mov;
   cout << "Year or Title?(y/t)" << endl;
   cin.getline(input, 2);
-  if (input[0] = 'y') {
+  if (input[0] == 'y') {
     cout << "Enter Year" << endl;
     cin >> no;
     for (int i = 0; i < b; i++) {
@@ -123,36 +129,43 @@ void search(int b, media **a) {
       }
     }
   }
-  else if (input[0] = 't') {
+  else if (input[0] == 't') {
     cout << "Enter Title" << endl;
-    cin >> tit;
+    cin.getline(tit, 99);
     for (int i = 0; i < b; i++) {
       int c;
       c = a[i]->SearchTitle(tit);
       if (c != 3) {
-	if (mus = dynamic_cast<music*>(a[i])) {
+	if (c == 0) {
+        if (mus = dynamic_cast<music*>(a[i])) {
 	  mus->PrintMusic();
 	}
+	}
+	if (c == 1) {
 	if (mov = dynamic_cast<movie*>(a[i])) {
 	  mov->PrintMovie();
-        }
+	}
+	}
+	if (c == 2) {
 	if (vg = dynamic_cast<videoGame*>(a[i])) {
 	  vg->PrintVideoGame();
-        }
+	}
+	}
       }
     }
   }
 }
+//Delete function
 void delet(int b, media **a) {
   char input[2];
   int no;
-  string tit;
+  char tit[99];
   videoGame *vg;
   music *mus;
   movie *mov;
   cout << "Year or Title?(y/t)" << endl;
   cin.getline(input, 2);
-  if (input[0] = 'y') {
+  if (input[0] == 'y') {
     cout << "Enter Year" << endl;
     cin >> no;
     for (int i = 0; i < b; i++) {
@@ -171,21 +184,28 @@ void delet(int b, media **a) {
       }
     }
   }
-  else if (input[0] = 't') {
+  else if (input[0] == 't') {
     cout << "Enter Title" << endl;
     cin >> tit;
     for (int i = 0; i < b; i++) {
       int c;
       c = a[i]->SearchTitle(tit);
+      cout << c << endl;
       if (c != 3) {
+	if (c == 0) {
         if (mus = dynamic_cast<music*>(a[i])) {
 	  mus->~music();
 	}
+	}
+	if (c == 1) {
 	if (mov = dynamic_cast<movie*>(a[i])) {
 	  mov->~movie();
 	}
+	}
+	if (c == 2) {
 	if (vg = dynamic_cast<videoGame*>(a[i])) {
 	  vg->~videoGame();
+	}
 	}
       }
     }

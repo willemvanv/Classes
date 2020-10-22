@@ -5,13 +5,15 @@
 using namespace std;
 
 class videoGame: public media {
+  //Public fuctions
  public:
-  videoGame(string Publisher, float Rating, int Year, string Title, int Type);
-  string getPublisher();
+  videoGame(char Publisher[99], float Rating, int Year, char Title[99], int Type);
+  char* getPublisher();
   float getRating();
   void PrintVideoGame();
   ~videoGame();
+  //Private vars
  private:
-  string publisher;
+  char publisher[99];
   float rating;
 };
